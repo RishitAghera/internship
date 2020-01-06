@@ -1,18 +1,12 @@
 def square_of_sum(number):
-    square=0
-    for i in range(1,number+1):
-        square+=i
-    return square*square
+    return sum(range(1,number+1))**2
 
 
 def sum_of_squares(number):
-    square=0
-    for i in range(1,number+1):
-        square+=(i*i)
-    return square
+    return sum(i*i for i in range(1,number+1))
 
 def difference_of_squares(number):
     return abs(square_of_sum(number)-sum_of_squares(number))
 
 
-print(difference_of_squares(10))
+print(square_of_sum(4))
