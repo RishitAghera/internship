@@ -1,25 +1,15 @@
-import string
+stud = ["Alice", "Bob", "Charlie", "David", "Eve", "Fred", "Ginny", "Harriet", "Ileana", "Joseph", "Kincaid", "Larry"]
+
+plants = {"R": "Radishes", "C" : "Clover", "G" : "Grass", "V" : "Violets"}
 class Garden:
-    def __init__(self, diagram, students=""):
-        self.alapha=string.ascii_lowercase[:] # get all alphabatic character
-        self.allplants=['Grass', 'Clover', 'Radishes','Violets']
-        self.diagram=diagram.split('\n') # splitted plant 
-        if students!="":
-            self.students=sorted(students)
-        else:
-            self.students=""
-    def plants(self,student):
-        if self.students == "":
-            position=self.alapha.index(student[0].lower())+1
-            return self.getplants(position)
-        else:
-            position=self.students.index(student)+1
-            return self.getplants(position)
-    def getplants(self,position):
-        total_plant=[]
-        position=(position*2)-1
-        pattern=self.diagram[0][position-1:position+1]
-        pattern+=self.diagram[1][position-1:position+1]
-        for char in pattern:
-            total_plant+=[plant for plant in self.allplants if plant[0] in char]
-        return total_plant
+    def __init__(self, diagram, students=stud):
+        self.students=sorted(students)
+        self.diagram=diagram.split()
+        
+    def plants(self,students):
+        index=self.students.index(students)
+        return [plants[self.diagram[i][j]] for i in range(2) for j in range(2*index,2*(index+1))]
+        
+        
+
+    
