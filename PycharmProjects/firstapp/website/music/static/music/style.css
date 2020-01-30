@@ -1,0 +1,12 @@
+body{
+    background: white url("images/design-space-paper-textured-background_53876-42312.png");
+
+}
+
+.navabar{
+    border-radius:0;
+}
+
+.navbar-brand{
+    font-family:'Satisfy',cursive;
+}

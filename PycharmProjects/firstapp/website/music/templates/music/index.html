@@ -1,0 +1,20 @@
+{% extends 'music/base.html' %}
+{% load static %}
+{% block body %}
+{% if object_list %}
+<h3>Here are all Albums:</h3>
+<ul>
+
+    {% for album in object_list %}
+    <image src="{% static album.album_logo %}" style="width: 250px;"></image>
+        <form action="{% url 'music:album-delete' album.id %}" method="POST">{% csrf_token %}
+            <li><a href="{% url 'music:detail' album.id %}/"> {{ album.album_title }} </a>
+                <button type="submit" class="glyphicon glyphicon-remove btn btn-danger"></button>&nbsp;<button type="submit" class="glyphicon glyphicon-edit btn btn-danger"></button></li>
+        </form>
+    {% endfor %}
+    {% else %}
+        <h3>No records found.</h3>
+    {% endif %}
+
+</ul>
+{% endblock %}
