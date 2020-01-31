@@ -6,11 +6,12 @@
 <ul>
 
     {% for album in object_list %}
-    <image src="{% static album.album_logo %}" style="width: 250px;"></image>
+
         <form action="{% url 'music:album-delete' album.id %}" method="POST">{% csrf_token %}
-            <li><a href="{% url 'music:detail' album.id %}/"> {{ album.album_title }} </a>
-                <button type="submit" class="glyphicon glyphicon-remove btn btn-danger"></button>&nbsp;<button type="submit" class="glyphicon glyphicon-edit btn btn-danger"></button></li>
-        </form>
+            <li><image src="{{ album.album_logo.url }}" style="width: 100px;"></image>
+                <a href="{% url 'music:detail' album.id %}/"> {{ album.album_title }} </a>
+                <button type="submit" class="glyphicon glyphicon-remove btn btn-danger"></button>&nbsp;<a href="/album/{{ album.id }}" class="glyphicon glyphicon-edit btn btn-danger"></a></li>
+        </form><br><br>
     {% endfor %}
     {% else %}
         <h3>No records found.</h3>

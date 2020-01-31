@@ -33,8 +33,13 @@
                 </a>
             </li>
                 <li class="">
-                <a href="#">
+                <a href="{% url 'music:allsongs' %}">
                     <span class="glyphicon glyphicon-music" aria-hidden="true"></span>&nbsp; songs
+                </a>
+            </li>
+                <li class="">
+                <a href="{% url 'music:song-add' %}">
+                    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>&nbsp; Add Songs
                 </a>
             </li>
             </ul>

@@ -1,0 +1,27 @@
+{% extends 'music/base.html' %}
+{% load static %}
+{% block title%}Album Detail{% endblock %}
+{% block body %}
+<!--<image src="{{ album.album_logo.url }}" style="width: 250px;"></image>-->
+
+<!--<h3>Album title:{{ album.album_title }}</h3><br>-->
+
+<!--<h3>Artist:{{album.artist}}</h3>-->
+
+    {% for album in object_list %}
+            <h3>Artist:<image src="{{ album.album_logo.url }}" style="width: 100px;"></image>{{ album.artist }}</h3>
+            {% if album.song_set.all %}
+                {% for song in album.song_set.all %}
+                    <br>
+                       <input type="radio" id="song{{ forloop.counter }}" name="song" value="{{ song.id }}">
+                    {{ song.song_title }}.{{ song.files_type }}
+                        <button type="submit" class="glyphicon glyphicon-remove btn btn-danger"></button>
+                        <a href="/album/{{ album.id }}" class="glyphicon glyphicon-edit btn btn-danger"></a>
+                        <br>
+                {% endfor %}
+            {% else %}
+            <h3>No songs found.</h3>
+            {% endif%}
+<hr style="color:#000000;height:2px;">
+    {% endfor %}
+{% endblock %}
