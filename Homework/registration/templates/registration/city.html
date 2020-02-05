@@ -1,0 +1,14 @@
+{% extends 'registration/base.html' %}
+{% block body %}
+<div class="col-md-12">
+<center>
+<table class="table table-hover" style="width:70%;">
+
+        <tr style="font-weight:bold;">We are Serving in these Cities</tr><br>
+        {% for city in object_list %}<br>
+        <tr style="font-weight:bold;">{{ city }}</tr><br>
+        {% endfor %}
+</table>
+{% endblock %}
+    </center>
+</div>

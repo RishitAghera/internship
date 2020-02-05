@@ -1,0 +1,44 @@
+{% extends 'registration/base.html' %}
+{% block title %}Login{% endblock %}
+{% block body %}
+
+    <div align="center"><h1>Login</h1>
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+        <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>
+            {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}Important: {% endif %}
+            {{ message }}
+        </li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+    <table>
+    <form method="POST">
+        {% csrf_token %}
+
+        {% for field in form %}
+            <tr>
+                <td>
+                    {{ field.label}}
+                </td>
+                <td>
+                    {{ field }}
+                </td>
+                <td>
+                    {{ field.errors }}
+                </td>
+            </tr>
+        {% endfor%}
+        <tr>
+            <td rowspan="3">
+                <button type="submit">Login</button>
+            </td>
+        </tr>
+
+    </form>
+    </table>
+    <a href="{% url 'registration:logout' %}">Logout</a> |
+    <a href="{% url 'registration:registration' %}">Sign Up</a>
+</div>
+{% endblock %}

@@ -1,0 +1,15 @@
+{% extends 'registration/base.html' %}
+{% block title %}Home{% endblock %}
+
+{% block body %}
+<div align="center">
+    {% if user.is_authenticated %}
+    <h2>Welcome {{ user.get_firstname }}</h2>
+
+    {% else %}
+    <a href="{% url 'registration:registration' %}">Sign Up</a>
+    <a href="{% url 'registration:login' %}">Login</a>
+
+    {% endif %}
+</div>
+{% endblock %}
