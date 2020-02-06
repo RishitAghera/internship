@@ -22,7 +22,7 @@ class RegistrationView(View):
         rform = RegistrationForm(request.POST)
         if rform.is_valid():
             rform.save()
-        return redirect('registration:login')
+        return redirect('registration:index')
 
 
 class LoginView(View):
@@ -33,6 +33,7 @@ class LoginView(View):
     def post(self, request):
         form1 = LoginForm(data=request.POST)
         if form1.is_valid():
+            print('isvalid')
             contact = form1.cleaned_data.get('contact')
             password = form1.cleaned_data.get('password')
             user = authenticate(contact=contact, password=password)
@@ -63,7 +64,7 @@ class CleanerRegistrationView(View):
         form=CleanerRegistrationForm(request.POST)
         if form.is_valid():
             obj=form.save(commit=False)
-            obj.user_id=request.user
+            obj.user=request.user
             request.user.is_cleaner=True
             request.user.save()
             obj.save()

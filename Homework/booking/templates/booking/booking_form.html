@@ -1,0 +1,93 @@
+{% extends 'registration/base.html' %}
+{% block body %}
+<div class="container">
+
+<hr>
+<h3>Book Cleaner </h3>
+<hr>
+<table>
+<form method="POST">
+    {% csrf_token %}
+       
+        {% for field in form %}
+            <tr>
+                <td>
+                    {{ field.label}}
+                </td>
+                <td>
+                    {{ field }}
+                </td>
+                <td>
+                    {{ field.errors }}
+                </td>
+            </tr>
+        {% endfor%}
+    <tr>
+        <td colspan="3">
+            <center><button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Check Cleaner Availability</button>
+            </center></form>
+                <!-- The Modal -->
+              <div class="modal" id="myModal">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+
+                    <!-- Modal Header -->
+                    <div class="modal-header">
+                      <h4 class="modal-title">Modal Heading</h4>
+                      <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+
+                    <!-- Modal body -->
+                    <div class="modal-body">
+                        <div class="card-deck">
+                    {% for i in cleaner %}
+                    <div class="card" style="width:400px">
+                        <div class="ca</form>
+                            rd-body">
+                        <form method="POST" action="{% url 'booking:bookingsave' %}">
+                            {% csrf_token %}
+                                <div style="display: none;">
+                                    {{ form.as_p }}
+                                </div>
+                                <input type="hidden" name="cleaner" value="{{ i.pk }}">
+                            <h4 class="card-title">{{ i.user.first_name|title }}</h4>
+                            <p class="card-text">Rate:{{ i.quality_score }}</p>
+                            <a href="{{ i.get_absolute_url }}" class="btn btn-outline-primary stretched-link">See Profile</a>
+                            <button type="submit" class="btn btn-primary stretched-link">Book Cleaner</button>
+                        </form>
+                        </div>
+                    </div>
+                    {% if forloop.counter|divisibleby:4 %}
+                        </div>
+                        <div class="card-deck">
+                    {% endif %}
+                {% endfor %}
+            </div>
+                    </div>
+                    <!-- Modal footer -->
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-danger" data-dismiss="modal">select</button>
+                    </div>
+
+                  </div>
+                </div>
+              </div></center>
+        </td>        
+    </tr>
+
+
+{% if cleaner|length > 0 %}
+    <script>
+        $(document).ready(function(){
+            $("#myModal").modal('show');
+        });
+    </script>
+    <!-- cleaner|length <= 0 and  cleaner != None%} -->
+{% elif cleaner|length <= 0 and  cleaner != None %}
+    <div class="alert alert-danger">
+        <a href="#" class="alert-link">Cleaner not Available</a>.
+    </div>
+{% endif%}
+</form>
+</div>
+{% endblock body %}

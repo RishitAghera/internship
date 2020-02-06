@@ -1,5 +1,6 @@
 from django.db import models
-from django.http import HttpResponse
+from django.http import HttpResponse, request
+from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.contrib.auth.models import User,AbstractUser
 
@@ -16,7 +17,7 @@ class User(AbstractUser):
     REQUIRED_FIELDS = ['username']
 
     def __str__(self):
-        return self.contact
+        return str(self.id)+' '+str(self.contact)
 
     def get_firstname(self):
         return self.first_name
@@ -29,11 +30,12 @@ class City(models.Model):
         return self.city_name
 
 class Cleaner(models.Model):
-    user_id=models.OneToOneField(User,on_delete=models.PROTECT,primary_key=True)
+    user=models.OneToOneField(User,on_delete=models.PROTECT,primary_key=True)
+    quality_score=models.FloatField(default=0.0)
     city=models.ForeignKey(City,on_delete=models.CASCADE)
 
     def __str__(self):
-        return str(self.user_id)+str(self.city)
+        return str(self.user)+' '+str(self.city)
 
-class Booking(models.Model):
-    pass
+    def get_absolute_url(self):
+        return reverse('registration:profile',kwargs={'pk':self.pk})

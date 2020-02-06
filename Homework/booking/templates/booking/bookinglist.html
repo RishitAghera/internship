@@ -1,0 +1,33 @@
+{% extends 'registration/base.html' %}
+{% block body %}
+<div class="col-md-12">
+    <center>
+    {% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>
+        {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}Important: {% endif %}
+        {{ message }}
+    </li>
+    {% endfor %}
+</ul>
+{% endif %}
+<hr>
+<h1>Bookings</h1>
+<hr><center>
+<center><b>
+        {% if object %}
+
+        <table class="table table-hover" style="width:50%;" align="center"><center>
+        <tr><td>User: {{object.user.first_name}}</td></tr>
+        <tr><td>Cleaner: {{object.cleaner.user.first_name}}</td></tr>
+        <tr><td>City:{{object.city}}</td></tr>
+        <tr><td>TimeSlot:{{object.timeslot}}</td></tr>
+        <tr></tr></center></table><hr>
+        {% else %}
+        <tr><h2>Data not Exists</h2></tr>
+        {% endif %}
+
+</table></center>
+</div>
+{% endblock %}
