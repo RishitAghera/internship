@@ -13,7 +13,7 @@
         {% endfor %}
     </ul>
     {% endif %}
-    <table>
+    <table class="table table-hover" style="width:50%;" align="center">
     <form method="POST">
         {% csrf_token %}
 
@@ -30,15 +30,16 @@
                 </td>
             </tr>
         {% endfor%}
-        <tr>
+        <tr><td></td>
             <td rowspan="3">
-                <button type="submit">Login</button>
-            </td>
+                <button class="btn btn-default" type="submit">Login</button>&nbsp;<a class="btn btn-default" href="{% url 'registration:registration' %}">Sign Up</a>
+            </td><td></td>
         </tr>
+
 
     </form>
     </table>
-    <a href="{% url 'registration:logout' %}">Logout</a> |
-    <a href="{% url 'registration:registration' %}">Sign Up</a>
+    <hr>
+
 </div>
 {% endblock %}

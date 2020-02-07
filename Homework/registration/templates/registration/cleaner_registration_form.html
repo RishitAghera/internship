@@ -1,8 +1,8 @@
 {% extends 'registration/base.html' %}
 {% block title %}Cleaner Registration{% endblock %}
 {% block body %}
-<h1>Become Cleaner</h1>
-<table>
+<center><h1>Become Cleaner</h1></center>
+<table class="table table-hover" style="width:50%;" align="center">
 <form method="POST" >
     {% csrf_token %}
     {% for field in form %}
@@ -20,7 +20,7 @@
     {% endfor%}
     <tr>
         <td rowspan="3">
-            <button type="submit">Register</button>
+            <button type="submit" align="right">Register</button>
         </td>
     </tr>
 

@@ -1,9 +1,15 @@
 {% extends 'registration/base.html' %}
+{% load static %}
 {% block title %}Registration{% endblock %}
 {% block body %}
-<h1>Welcome</h1>
-<table>
-<form method="POST">
+
+
+
+<center><h1>Welcome</h1></center>
+<!--<p id="error"></p></center>-->
+<table class="table table-hover" style="width:70%;" align="center">
+
+<form method="POST" id="registration">
     {% csrf_token %}
 
     {% for field in form %}
@@ -19,12 +25,33 @@
             </td>
         </tr>
     {% endfor%}
-    <tr>
+    <tr><td></td>
         <td rowspan="3">
-            <button type="submit">Register</button>
+            <button type="submit" id="id_button" class="btn btn-default">Register</button>
         </td>
     </tr>
 
 </form>
 </table>
-{% endblock %}
+{% endblock body %}
+{% block script%}
+<script src="{% static 'validation.js' %}"></script>
+<script>
+    $("#id_contact").change(function () {
+      var contact = $(this).val();
+
+      $.ajax({
+        url: '/ajax/validate_contact/',
+        data: {
+          'contact': contact
+        },
+        dataType: 'json',
+        success: function (data) {
+          if (data.is_taken) {
+            alert("A user with this Phone Number already exists.");
+          }
+        }
+      });
+    });
+  </script>
+{% endblock script %}

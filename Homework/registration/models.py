@@ -8,7 +8,7 @@ from django.contrib.auth.models import User,AbstractUser
 
 class User(AbstractUser):
     username = models.CharField(max_length=10,unique=False) #bydefault usernname is unique
-    contact = models.CharField('Contact',max_length=12,unique=True)
+    contact = models.CharField('Contact',max_length=10,unique=True)
     first_name = models.CharField('first_name',max_length=30,blank=True)
     last_name = models.CharField('Last_name',max_length=30,blank=True)
     is_cleaner =models.BooleanField('cleaner',default=False)

@@ -6,9 +6,7 @@
     {% load static %}
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
     <link href='https://fonts.googleapis.com.css??family=Satisfy' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" type="text/css" href="{% static 'music/style.css' %}">
-
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
 </head>
@@ -49,9 +47,16 @@
 
             </form>
             <ul class="nav navbar-nav navbar-right">
+                {% if user.is_cleaner == True %}
+                    <li class="">
+                    <a href="{% url 'booking:dutydetail' user.pk %}">
+                        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>&nbsp; My Duties
+                    </a>
+                </li>{% endif %}
+
             {% if user.is_authenticated %}
                     <li class="">
-                    <a href="booking/bookingdetail/{{user.pk}}/">
+                    <a href="{% url 'booking:mybookinglist' %}">
                         <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>&nbsp; My Bookings
                     </a>
                 </li>{% endif %}
@@ -128,5 +133,8 @@
 </nav>
 {% block body %}
 {% endblock %}
+
+{% block script%}
+{% endblock script%}
 </body>
 </html>

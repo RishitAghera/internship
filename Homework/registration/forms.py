@@ -1,5 +1,5 @@
 from django import forms
-
+import parsley
 from booking.models import BookingModel
 from .models import User, City,Cleaner
 from django.contrib.auth.forms import UserCreationForm,AuthenticationForm
@@ -17,7 +17,7 @@ class RegistrationForm(UserCreationForm):
 
 class LoginForm(forms.Form):
 
-    contact=forms.CharField(max_length=12, label="Enter Contact")
+    contact=forms.CharField(max_length=10, label="Enter Contact")
     password=forms.CharField(max_length=20,label="Enter Password",widget=forms.PasswordInput())
 
 class CleanerRegistrationForm(forms.ModelForm):

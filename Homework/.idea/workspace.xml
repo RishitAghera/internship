@@ -25,8 +25,12 @@
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../firstapp/website" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/static" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/client/templates/client" />
       <recent name="$PROJECT_DIR$/client" />
@@ -45,15 +49,26 @@
     </task>
     <servers />
   </component>
+  <component name="UnknownFeatures">
+    <option featureType="com.intellij.fileTypeFactory" implementationName="*.js" />
+  </component>
   <component name="WindowStateProjectService">
     <state x="390" y="203" width="576" height="385" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1580964696297">
       <screen x="0" y="28" width="1366" height="740" />
     </state>
     <state x="390" y="203" width="576" height="385" key="#com.intellij.fileTypes.FileTypeChooser/0.28.1366.740@0.28.1366.740" timestamp="1580964696297" />
-    <state x="466" y="156" width="424" height="480" key="FileChooserDialogImpl" timestamp="1581011482181">
+    <state x="466" y="156" width="424" height="480" key="FileChooserDialogImpl" timestamp="1581074096993">
       <screen x="0" y="28" width="1366" height="740" />
     </state>
-    <state x="466" y="156" width="424" height="480" key="FileChooserDialogImpl/0.28.1366.740@0.28.1366.740" timestamp="1581011482181" />
+    <state x="466" y="156" width="424" height="480" key="FileChooserDialogImpl/0.28.1366.740@0.28.1366.740" timestamp="1581074096993" />
+    <state x="179" y="33" key="SettingsEditor" timestamp="1581051159297">
+      <screen x="0" y="28" width="1366" height="740" />
+    </state>
+    <state x="179" y="33" key="SettingsEditor/0.28.1366.740@0.28.1366.740" timestamp="1581051159297" />
+    <state x="335" y="225" key="com.intellij.ide.util.TipDialog" timestamp="1581077755605">
+      <screen x="0" y="28" width="1366" height="740" />
+    </state>
+    <state x="335" y="225" key="com.intellij.ide.util.TipDialog/0.28.1366.740@0.28.1366.740" timestamp="1581077755605" />
     <state x="347" y="46" width="672" height="676" key="search.everywhere.popup" timestamp="1580993593316">
       <screen x="0" y="28" width="1366" height="740" />
     </state>

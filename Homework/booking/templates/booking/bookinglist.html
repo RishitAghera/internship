@@ -1,33 +1,41 @@
 {% extends 'registration/base.html' %}
 {% block body %}
+<script>
+    var timeslot={
+        1:"10-11",2:"11-12",3:"12-01",4:"01-02",5:"02-03",6:"03-04",7:"04-05",8:"05-06",9:"06-07"
+    }
+</script>
+
 <div class="col-md-12">
-    <center>
-    {% if messages %}
-<ul class="messages">
-    {% for message in messages %}
-    <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>
-        {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}Important: {% endif %}
-        {{ message }}
-    </li>
-    {% endfor %}
-</ul>
-{% endif %}
+<center>
 <hr>
-<h1>Bookings</h1>
-<hr><center>
-<center><b>
-        {% if object %}
-
-        <table class="table table-hover" style="width:50%;" align="center"><center>
-        <tr><td>User: {{object.user.first_name}}</td></tr>
-        <tr><td>Cleaner: {{object.cleaner.user.first_name}}</td></tr>
-        <tr><td>City:{{object.city}}</td></tr>
-        <tr><td>TimeSlot:{{object.timeslot}}</td></tr>
-        <tr></tr></center></table><hr>
-        {% else %}
-        <tr><h2>Data not Exists</h2></tr>
-        {% endif %}
-
-</table></center>
-</div>
-{% endblock %}
+    <div class="alert alert-secondary">
+        <strong><h2>Detail of Your Cleaner List...</h2></strong>
+    </div>
+<hr>
+<table class="table table-hover" style="width:70%;">
+    <thead>
+        <tr>
+            <th>No.</th>
+            <th>Cleaner First Name</th>
+            <th>Cleaner Last Name</th>
+            <th>Cleaner City</th>
+            <th>Time Slot</th>
+            <th>Date</th>
+        </tr>
+    </thead>
+    <body>
+        {% for i in object_list %}
+            <tr>
+                <td>{{ forloop.counter }}</td>
+                <td>{{ i.cleaner.user.first_name }}</td>
+                <td>{{ i.cleaner.user.last_name }}</td>
+                <td>{{ i.cleaner.city }}</td>
+                <td style="font-weight:bold;"><script>document.write(timeslot[{{ i.timeslot }}])</script></td>
+                <td style="font-weight:bold;">{{ i.date }}</td>
+            </tr>
+        {% endfor %}
+    </body>
+</table>
+</center>
+{% endblock body %}

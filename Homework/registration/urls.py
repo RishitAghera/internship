@@ -1,3 +1,4 @@
+from django.conf.urls import url
 from django.urls import path
 
 from . import views
@@ -12,5 +13,6 @@ urlpatterns = [
     path('cleaner-registration/',CleanerRegistrationView.as_view(),name='cleaner-registration'),
     path('profile/<int:pk>/',ProfileView.as_view(),name="profile"),
     path('booking/',Booking.as_view(),name="booking"),
-    path('city/',CityView.as_view(),name='city')
+    path('city/',CityView.as_view(),name='city'),
+    url(r'^ajax/validate_contact/$', views.validate_contact, name='validate_contact'),
 ]

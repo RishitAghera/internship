@@ -126,3 +126,5 @@ STATICFILES_DIRS=[
 ]
 
 AUTH_USER_MODEL = 'registration.User'
+
+LOGIN_URL='registration:login'

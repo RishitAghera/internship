@@ -1,11 +1,12 @@
 {% extends 'registration/base.html' %}
+{% load static %}
 {% block body %}
 <div class="container">
 
 <hr>
-<h3>Book Cleaner </h3>
+<center><h2>Book Cleaner </h2></center>
 <hr>
-<table>
+<table class="table table-hover" style="width:50%;" align="center">
 <form method="POST">
     {% csrf_token %}
        
@@ -44,7 +45,7 @@
                     <div class="card" style="width:400px">
                         <div class="ca</form>
                             rd-body">
-                        <form method="POST" action="{% url 'booking:bookingsave' %}">
+                        <form method="POST" action="{% url 'booking:bookingsave' %}" id="searchcleaner">
                             {% csrf_token %}
                                 <div style="display: none;">
                                     {{ form.as_p }}
@@ -85,9 +86,14 @@
     <!-- cleaner|length <= 0 and  cleaner != None%} -->
 {% elif cleaner|length <= 0 and  cleaner != None %}
     <div class="alert alert-danger">
-        <a href="#" class="alert-link">Cleaner not Available</a>.
+        <a href="#" class="alert-link">Sorry!Cleaner not Available</a>.
     </div>
 {% endif%}
 </form>
 </div>
 {% endblock body %}
+
+{% block script%}
+<script src="{% static 'validation.js' %}"></script>
+
+{% endblock script %}
