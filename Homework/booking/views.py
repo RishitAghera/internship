@@ -1,15 +1,11 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
-# Create your views here.
-from django.db.models import Q
-from django.http import HttpResponse, request
-from django.urls import reverse
 from django.utils.decorators import method_decorator
 from django.views import generic
-from django.views.generic import View,DetailView,ListView
+from django.views.generic import View,DetailView
 from .models import BookingModel
 from registration.models import Cleaner, City
-from .forms import BookingForm, SLOT_CHOICE, BookingDetailForm
+from .forms import BookingForm, BookingDetailForm
 
 
 class BookingView(View):
@@ -30,7 +26,7 @@ class BookingView(View):
                 user__in=[x.cleaner.user for x in book]).exclude(user=request.user)
             print(cleaner,city,date,timeslot)
 
-            return render(request,'booking/booking_form.html',{'cleaner':cleaner,'city':city,'timeslot':timeslot,'date':date,'form':form})
+            return render(request,'booking/booking_form.html',{'cleaner':cleaner,'city':city,'timeslot':timeslot,'date':date,'form':form,'star_counter':range(5)})
 
 class BookingDetail(DetailView):
     model=BookingModel
@@ -56,11 +52,11 @@ class BookingSave(View):
         return redirect('booking:bookinglist',pk=o.id)
 
 @method_decorator(login_required, name='dispatch')
-class Dutydetail(View):
-    model = BookingModel
+class Dutydetail(generic.ListView):
     template_name = 'booking/bookinglist.html'
 
-    extra_context = {'form': BookingDetailForm()}
+    def get_queryset(self):
+        return BookingModel.objects.filter(cleaner__user=self.request.user).order_by('-date')
 
 @method_decorator(login_required, name='dispatch')
 class BookingList(generic.ListView):

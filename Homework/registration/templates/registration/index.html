@@ -6,7 +6,7 @@
     {% if user.is_authenticated %}
     <h2>Welcome {{ user.get_firstname }}</h2>
 
-    {% else %}
+    {% else %}<h1><center>Welcome to Homework</center></h1>
     <a class="btn btn-default" href="{% url 'registration:registration' %}">Sign Up</a>
     <a class="btn btn-default" href="{% url 'registration:login' %}">Login</a>
 

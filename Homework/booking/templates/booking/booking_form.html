@@ -52,7 +52,9 @@
                                 </div>
                                 <input type="hidden" name="cleaner" value="{{ i.pk }}">
                             <h4 class="card-title">{{ i.user.first_name|title }}</h4>
-                            <p class="card-text">Rate:{{ i.quality_score }}</p>
+                            <p class="card-text">Ratings:{{ i.quality_score }} {% for star in star_counter %}
+                                <span class="fa fa-star" {% if star < i.quality_score %} style="color:orange;"{% endif %}></span>
+                            {%endfor%}</p>
                             <a href="{{ i.get_absolute_url }}" class="btn btn-outline-primary stretched-link">See Profile</a>
                             <button type="submit" class="btn btn-primary stretched-link">Book Cleaner</button>
                         </form>

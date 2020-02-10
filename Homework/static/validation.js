@@ -95,11 +95,10 @@ $(document).ready(function(){
         });
 
         $('#registration').submit(function(e) {
-        alert('submit')
             if(!(contact_validation() && first_name_validation() && last_name_validation() && email_validation() && password_validation()))
             {
                 e.preventDefault()
-                alert('not submited')
+
             }
         });
 

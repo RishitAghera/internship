@@ -1,17 +1,12 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
-from django.http import HttpResponse, JsonResponse
+from django.http import JsonResponse
 from django.utils.decorators import method_decorator
 from django.views.generic import View
 from .forms import RegistrationForm, LoginForm, CleanerRegistrationForm
 from django.contrib.auth import authenticate, login, logout
-from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.messages.views import messages
 from django.views import generic
-
-
-
-# Create your views here.
 from .models import User, City
 
 
@@ -80,8 +75,7 @@ class ProfileView(generic.DetailView):
     extra_context = {'form':CleanerRegistrationForm()}
 
 class Booking(View):
-    # num_list=[]
-    # for num in User.objects.all:
+
     @method_decorator(login_required, name='dispatch')
     def get(self, request):
         form = RegistrationForm()
