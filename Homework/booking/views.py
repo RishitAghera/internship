@@ -1,8 +1,9 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
+from django.urls import reverse_lazy
 from django.utils.decorators import method_decorator
 from django.views import generic
-from django.views.generic import View,DetailView
+from django.views.generic import View, DetailView, DeleteView
 from .models import BookingModel
 from registration.models import Cleaner, City
 from .forms import BookingForm, BookingDetailForm
@@ -24,8 +25,6 @@ class BookingView(View):
             book = BookingModel.objects.filter(city__city_name=city, timeslot=timeslot, date=date)
             cleaner = Cleaner.objects.filter(city__city_name=city).exclude(
                 user__in=[x.cleaner.user for x in book]).exclude(user=request.user)
-            print(cleaner,city,date,timeslot)
-
             return render(request,'booking/booking_form.html',{'cleaner':cleaner,'city':city,'timeslot':timeslot,'date':date,'form':form,'star_counter':range(5)})
 
 class BookingDetail(DetailView):
@@ -34,6 +33,10 @@ class BookingDetail(DetailView):
 
     extra_context = {'form':BookingDetailForm()}
 
+class DeleteBooking(DeleteView):
+    model=BookingModel
+    # template_name = 'booking/bookingmodel_confirm_delete.html'
+    success_url = reverse_lazy('registration:index')
 
 
 

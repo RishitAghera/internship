@@ -24,7 +24,10 @@
         <tr><td>Cleaner: {{object.cleaner.user.first_name}}</td></tr>
         <tr><td>City:{{object.city}}</td></tr>
         <tr><td>TimeSlot:{{object.timeslot}}</td></tr>
-        <tr></tr></center></table><hr>
+
+            <tr><td></td><td><form method="post" action="{% url 'booking:deletebooking' object.pk %}">{% csrf_token %}<button class="btn btn-danger" action="submit">Cancel Booking</button></form></td></tr>
+
+        <tr></center></table><hr>
         {% else %}
         <tr><h2>Data not Exists</h2></tr>
         {% endif %}

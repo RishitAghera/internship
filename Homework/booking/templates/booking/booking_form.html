@@ -41,6 +41,7 @@
                     <!-- Modal body -->
                     <div class="modal-body">
                         <div class="card-deck">
+<!--                            <form method="POST" action="{% url 'booking:bookingsave' %}" id="searchcleaner">-->
                     {% for i in cleaner %}
                     <div class="card" style="width:400px">
                         <div class="ca</form>
@@ -51,12 +52,12 @@
                                     {{ form.as_p }}
                                 </div>
                                 <input type="hidden" name="cleaner" value="{{ i.pk }}">
-                            <h4 class="card-title">{{ i.user.first_name|title }}</h4>
-                            <p class="card-text">Ratings:{{ i.quality_score }} {% for star in star_counter %}
+                                <h4 class="card-title">{{ i.user.first_name|title }}</h4>
+                                <p class="card-text">Ratings:{{ i.quality_score }} {% for star in star_counter %}
                                 <span class="fa fa-star" {% if star < i.quality_score %} style="color:orange;"{% endif %}></span>
                             {%endfor%}</p>
                             <a href="{{ i.get_absolute_url }}" class="btn btn-outline-primary stretched-link">See Profile</a>
-                            <button type="submit" class="btn btn-primary stretched-link">Book Cleaner</button>
+                            <button type="submit" class="btn btn-primary stretched-link" id="btn_book">Book Cleaner</button>
                         </form>
                         </div>
                     </div>
@@ -69,7 +70,7 @@
                     </div>
                     <!-- Modal footer -->
                     <div class="modal-footer">
-                      <button type="button" class="btn btn-danger" data-dismiss="modal">select</button>
+                      <button type="button" class="btn btn-danger" data-dismiss="modal" id="close" onclick="" >close</button>
                     </div>
 
                   </div>
@@ -82,9 +83,25 @@
 {% if cleaner|length > 0 %}
     <script>
         $(document).ready(function(){
+
             $("#myModal").modal('show');
+
+            $('form:regex(id,searchcleaner[.].)').submit(function(e){
+                  if (!confirm("Are you sure!?")) {
+                      e.preventDefault();
+                  }
+            });
+
+            $("#myModal").modal('show');
+            $('#myModal').on('hide.bs.modal', function (e) {
+                  if (!confirm("We didn't match your requirments!?")) {
+                          e.preventDefault();
+                      }
+            })
+
         });
     </script>
+
     <!-- cleaner|length <= 0 and  cleaner != None%} -->
 {% elif cleaner|length <= 0 and  cleaner != None %}
     <div class="alert alert-danger">
