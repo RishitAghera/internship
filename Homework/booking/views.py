@@ -1,9 +1,14 @@
 from django.contrib.auth.decorators import login_required
+from django.core.mail import send_mail, send_mass_mail
+from django.db.models.signals import post_save
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.utils.decorators import method_decorator
 from django.views import generic
 from django.views.generic import View, DetailView, DeleteView
+from mysql.connector import connect
+
+from Homework.settings import EMAIL_HOST_USER
 from .models import BookingModel
 from registration.models import Cleaner, City
 from .forms import BookingForm, BookingDetailForm
@@ -44,14 +49,26 @@ class BookingSave(View):
 
     @method_decorator(login_required, name='dispatch')
     def post(self,request):
-        print(request.POST)
         data=request.POST.copy()
         city=City.objects.get(pk=data['city'])
+        print(city.city_name)
         cleaner=Cleaner.objects.get(pk=data['cleaner'])
+        print(cleaner.user.first_name)
+        print(data['date'])
         o=BookingModel.objects.create(user=request.user,city=city,date=data['date'],cleaner=cleaner,timeslot=data['timeslot'])
-        data=BookingModel.objects.filter(user=request.user)
-        print(data)
-        # return render(request,'booking/postbooking.html')
+        # recepient=(Cleaner.objects.get(pk=data['cleaner']).user.email)
+        #
+        # cleaner_msg = "You have Book for a Date:" + data['date'] + " for cleaning service at " + city.city_name + "\nCustomer name : " + cleaner.user.first_name + "\nSee Your Orders List :127.0.0.1:8000/bookorder/'"
+        #
+        # customer_msg = "You have Book for a Date:" + data['date'] + " for cleaning service at " + city.city_name + "\nCustomer name : " + cleaner.user.first_name + "\nSee Your Orders List :127.0.0.1:8000/bookorder/'"
+        #
+        # cleaner_mail = ('You Booked', cleaner_msg, EMAIL_HOST_USER, [o.cleaner.user.email])
+        # customer_mail = ('You Book', customer_msg, EMAIL_HOST_USER, [o.user.email])
+        #
+        # res = send_mass_mail((cleaner_mail, customer_mail), fail_silently=False)
+        #
+        # print(res)        # return render(request,'booking/postbooking.html')
+        # d = BookingModel.objects.filter(user=request.user)
         return redirect('booking:bookinglist',pk=o.id)
 
 @method_decorator(login_required, name='dispatch')

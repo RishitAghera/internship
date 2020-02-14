@@ -4,6 +4,7 @@ from .models import BookingModel
 from registration.models import City
 
 SLOT_CHOICE=(
+    (0,'-----'),
     (1,'10-11'),
     (2,'11-12'),
     (3,'12-01'),
