@@ -36,7 +36,7 @@ class BookingDetail(DetailView):
 class DeleteBooking(DeleteView):
     model=BookingModel
     # template_name = 'booking/bookingmodel_confirm_delete.html'
-    success_url = reverse_lazy('registration:index')
+    success_url = reverse_lazy('booking:mybookinglist')
 
 
 

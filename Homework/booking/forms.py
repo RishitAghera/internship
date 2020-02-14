@@ -1,4 +1,4 @@
-
+from django.utils import timezone
 from django import forms
 from .models import BookingModel
 from registration.models import City
@@ -21,6 +21,7 @@ class BookingForm(forms.Form):
     date=forms.DateField(widget=forms.DateTimeInput(attrs={
             'class': 'form-control datetimepicker-input','type':'date'
         }))
+    date.widget.attrs['min'] = timezone.now().date()
 
 class BookingDetailForm(forms.ModelForm):
     class Meta:

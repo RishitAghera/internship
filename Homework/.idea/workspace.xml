@@ -24,7 +24,7 @@
   <component name="PropertiesComponent">
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/static/image" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RecentsManager">
@@ -66,10 +66,10 @@
       <screen x="0" y="28" width="1366" height="740" />
     </state>
     <state x="179" y="33" key="SettingsEditor/0.28.1366.740@0.28.1366.740" timestamp="1581051159297" />
-    <state x="335" y="225" key="com.intellij.ide.util.TipDialog" timestamp="1581154154946">
+    <state x="335" y="225" key="com.intellij.ide.util.TipDialog" timestamp="1581659819497">
       <screen x="0" y="28" width="1366" height="740" />
     </state>
-    <state x="335" y="225" key="com.intellij.ide.util.TipDialog/0.28.1366.740@0.28.1366.740" timestamp="1581154154946" />
+    <state x="335" y="225" key="com.intellij.ide.util.TipDialog/0.28.1366.740@0.28.1366.740" timestamp="1581659819497" />
     <state x="347" y="46" width="672" height="676" key="search.everywhere.popup" timestamp="1581330605520">
       <screen x="0" y="28" width="1366" height="740" />
     </state>

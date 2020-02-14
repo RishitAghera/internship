@@ -1,8 +1,13 @@
+from datetime import datetime, timedelta
+
 from django.contrib.auth.decorators import login_required
+from django.db.models import Q
 from django.shortcuts import render, redirect
 from django.http import JsonResponse
 from django.utils.decorators import method_decorator
 from django.views.generic import View
+
+from booking.models import BookingModel
 from .forms import RegistrationForm, LoginForm, CleanerRegistrationForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.messages.views import messages
@@ -25,7 +30,7 @@ class RegistrationView(View):
 class LoginView(View):
     def get(self, request):
         lform = LoginForm()
-
+        messages.warning(request,'Please Login in order to continue!')
         return render(request, 'registration/login.html', {'form': lform})
 
     def post(self, request):
@@ -50,7 +55,12 @@ class LogoutView(View):
         return redirect("registration:index")
 
 def index(request):
-    return render(request,'registration/index.html')
+    tomorrow = datetime.now() + timedelta(days=1)
+    # upcoming_booking=BookingModel.objects.filter(Q(date=tomorrow)&Q(pk=request.user.id))
+    upcoming_booking = BookingModel.objects.filter(date=tomorrow,cleaner__user__id=request.user.id)
+    print(upcoming_booking)
+    print(request.user.id)
+    return render(request,'registration/index.html',{'upcoming':upcoming_booking})
 
 
 class CleanerRegistrationView(View):

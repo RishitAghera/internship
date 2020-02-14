@@ -180,12 +180,15 @@ function city_validation()
         }
     });
 
+
+
     $("#searchcleaner").submit(function(e){
         if(!(city_validation() && timeslot_validation() && date_validation()))
         {
-            e.preventDefault()
+            e.preventDefault();
         }
     });
+
 
 
 });

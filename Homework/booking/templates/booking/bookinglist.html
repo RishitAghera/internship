@@ -34,6 +34,8 @@
                 <td>{{ i.cleaner.city }}</td>
                 <td style="font-weight:bold;"><script>document.write(timeslot[{{ i.timeslot }}])</script></td>
                 <td style="font-weight:bold;">{{ i.date }}</td>
+            <td><form method="post" action="{% url 'booking:deletebooking' i.pk %}">{% csrf_token %}<button class="glyphicon glyphicon-remove btn btn-danger" action="submit"></button></form></td>
+
             </tr>
         {% endfor %}
     {% else %}

@@ -2,13 +2,25 @@
 {% block title %}Home{% endblock %}
 
 {% block body %}
+<script>
+    var timeslot={
+        1:"10-11 am",2:"11am-12pm",3:"12pm-01pm",4:"01pm-02pm",5:"02pm-03pm",6:"03pm-04pm",7:"04pm-05pm",8:"05pm-06pm",9:"06pm-07pm"
+    }
+</script>
 <div align="center">
     {% if user.is_authenticated %}
-    <h2>Welcome {{ user.get_firstname }}</h2>
-
+        <h1>Welcome {{ user.get_firstname }}</h1>
+        {% if user.is_cleaner == True %}
+            {% if upcoming %}<marquee scrollamount="20" class="alert alert-info"><h1>You have duties tomorrow for cutomer :
+                {% for booking in upcoming %} {{booking.user.first_name}} {{booking.city}} <script>document.write(timeslot[{{booking.timeslot}}])</script>,
+        {%endfor%}</marquee>
+            {%else%}
+                <h1>no upcoming booking</h1>
+            {%endif%}
+        {%endif%}
     {% else %}<h1><center>Welcome to Homework</center></h1>
-    <a class="btn btn-default" href="{% url 'registration:registration' %}">Sign Up</a>
-    <a class="btn btn-default" href="{% url 'registration:login' %}">Login</a>
+        <a class="btn btn-default" href="{% url 'registration:registration' %}">Sign Up</a>
+        <a class="btn btn-default" href="{% url 'registration:login' %}">Login</a>
 
     {% endif %}
 </div>
