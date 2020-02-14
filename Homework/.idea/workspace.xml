@@ -54,6 +54,10 @@
     <option featureType="com.intellij.fileTypeFactory" implementationName="*.js" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="141" y="56" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1581680357822">
+      <screen x="0" y="28" width="1366" height="740" />
+    </state>
+    <state x="141" y="56" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.28.1366.740@0.28.1366.740" timestamp="1581680357822" />
     <state x="390" y="203" width="576" height="385" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1580964696297">
       <screen x="0" y="28" width="1366" height="740" />
     </state>

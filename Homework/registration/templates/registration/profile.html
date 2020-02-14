@@ -18,20 +18,25 @@
 <table class="table table-hover" style="width:70%;">
         <tr>
             <td>First Name</td>
-            <td>{{ object.first_name }}</td>
+            <td style="font-weight:bold;">{{ object.first_name }}</td>
         </tr>
         <tr>
             <td>Last Name</td>
-            <td>{{ object.last_name }}</td>
+            <td style="font-weight:bold;">{{ object.last_name }}</td>
         </tr>
         <tr>
             <td>Email</td>
-            <td>{{ object.email }}</td>
+            <td style="font-weight:bold;">{{ object.email }}</td>
         </tr>
         <tr>
             <td>Contact</td>
             <td style="font-weight:bold;">{{ object.contact}}</td>
         </tr>
+                <tr>
+            <td>Serve as Cleaner</td>
+            <td style="font-weight:bold;">{% if object.is_cleaner == True %}Yes{%else%}No{% endif %}</td>
+        </tr>
+
 </table>
 </div>
 {% endblock %}
